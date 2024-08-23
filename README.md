@@ -9,7 +9,7 @@ BLUESEA ROS driver is specially designed to connect to the lidar products produc
 
     mkdir bluesea2   											//create a folder and customize it
     cd bluesea2    												//into this folder
-    git clone [https://github.com/BlueSeaLidar/bluesea2.git](https://github.com/tantam1992/bluesea2.git)  src //download the driver package and rename it to src
+    git clone https://github.com/tantam1992/bluesea2.git src //download the driver package and rename it to src
 2.Build
 
     catkin_make
