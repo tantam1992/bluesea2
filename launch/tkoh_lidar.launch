@@ -1,81 +1,91 @@
 <launch>
- <group ns="lidarL">
-  <node name="lidar01" pkg="bluesea2" type="bluesea2_node" output="screen" >
-    #ROS#
-    <param name="scan_topic" value="scan"/>
-    <param name="cloud_topic" value="cloud"/>
-    <param name="frame_id" value="map" />
-     #DATA#
-    <param name="min_dist" value="0.01"/>
-    <param name="max_dist" value="50.0"/>
-    <param name="output_scan" value="true" />
-    <param name="output_cloud" value="false"/>
-    <param name="output_cloud2" value="false"/>
-    <param name="output_360" value="true" />
-    <param name="reversed" value="false"/>
-    <param name="hard_resample" value="false"/>
-    <param name="soft_resample" value="false"/>
-    <param name="with_angle_filter" value="false"/>
-    <param name="min_angle" value="-3.1415926"/>
-    <param name="max_angle" value="3.1415926"/> 
-    #CONNECT#
-    <param name="type" value="uart" />
-    <!-- <param name="port" value="/dev/ttyUSB2" /> -->
-    <param name="port" value="/dev/ttyLIDARL" />
-    <param name="baud_rate" value="-1" />
-    #GET#
-    <param name="uuid" value="-1" />
-    #SET#
-    <param name="rpm" value="-1"/>
-    <param name="resample_res" value="-1"/>
-    <param name="unit_is_mm" value="-1"/>
-    <param name="with_smooth" value="-1" />
-    <param name="with_deshadow" value="-1" />
-    <param name="with_confidence" value="-1"/>
-    <param name="direction" value="-1"/>#-1 0 1
-    #CUSTOM#
-    <param name="error_circle" value="3"/>
-    <param name="error_scale" value="0.9"/>
-  </node>
- </group>
+	<node pkg="tf" type="static_transform_publisher" name="base_to_scanleft"
+			args="-0.095 0.36 0.2625 1.57079632679 0.0 3.14159265 /base_link /scan_left 50" />
+<!-- 2.53072742 -->
+	<node pkg="tf" type="static_transform_publisher" name="base_to_scanright"
+			args="-0.095 -0.36 0.2625 -1.57079632679 0.0 3.14159265 /base_link /scan_right 50" />
+<!-- 3.75245789 -->
 
- <group ns="lidarR">
-  <node name="lidar01" pkg="bluesea2" type="bluesea2_node" output="screen" >
-    #ROS#
-    <param name="scan_topic" value="scan"/>
-    <param name="cloud_topic" value="cloud"/>
-    <param name="frame_id" value="map" />
-     #DATA#
-    <param name="min_dist" value="0.01"/>
-    <param name="max_dist" value="50.0"/>
-    <param name="output_scan" value="true" />
-    <param name="output_cloud" value="false"/>
-    <param name="output_cloud2" value="false"/>
-    <param name="output_360" value="true" />
-    <param name="reversed" value="false"/>
-    <param name="hard_resample" value="false"/>
-    <param name="soft_resample" value="false"/>
-    <param name="with_angle_filter" value="false"/>
-    <param name="min_angle" value="-3.1415926"/>
-    <param name="max_angle" value="3.1415926"/> 
-    #CONNECT#
-    <param name="type" value="uart" />
-    <!-- <param name="port" value="/dev/ttyUSB1" /> -->
-    <param name="port" value="/dev/ttyLIDARR" />
-    <param name="baud_rate" value="-1" />
-    #GET#
-    <param name="uuid" value="-1" />
-    #SET#
-    <param name="rpm" value="-1"/>
-    <param name="resample_res" value="-1"/>
-    <param name="unit_is_mm" value="-1"/>
-    <param name="with_smooth" value="-1" />
-    <param name="with_deshadow" value="-1" />
-    <param name="with_confidence" value="-1"/>
-    <param name="direction" value="-1"/>#-1 0 1
-    #CUSTOM#
-    <param name="error_circle" value="3"/>
-    <param name="error_scale" value="0.9"/>
-  </node>
- </group></launch>
+  <group ns="lidarLeft">
+    <node name="lidar01" pkg="bluesea2" type="bluesea2_node" output="screen" >
+      #ROS#
+      <param name="scan_topic" value="scan"/>
+      <par3.75245789am name="cloud_topic" value="cloud"/>
+      <!-- <param name="frame_id" value="map" /> -->
+      <param name="frame_id" value="scan_left" />
+      #DATA#
+      <param name="min_dist" value="0.01"/>
+      <param name="max_dist" value="50.0"/>
+      <param name="output_scan" value="true" />
+      <param name="output_cloud" value="false"/>
+      <param name="output_cloud2" value="false"/>
+      <param name="output_360" value="true" />
+      <param name="reversed" value="false"/>
+      <param name="hard_resample" value="false"/>
+      <param name="soft_resample" value="false"/>
+      <param name="with_angle_filter" value="false"/>
+      <param name="min_angle" value="-3.1415926"/>
+      <param name="max_angle" value="3.1415926"/> 
+      #CONNECT#
+      <param name="type" value="uart" />
+      <!-- <param name="port" value="/dev/ttyUSB2" /> -->
+      <param name="port" value="/dev/ttyLIDARL" />
+      <param name="baud_rate" value="-1" />
+      #GET#
+      <param name="uuid" value="-1" />
+      #SET#
+      <param name="rpm" value="-1"/>
+      <param name="resample_res" value="-1"/>
+      <param name="unit_is_mm" value="-1"/>
+      <param name="with_smooth" value="-1" />
+      <param name="with_deshadow" value="-1" />
+      <param name="with_confidence" value="-1"/>
+      <param name="direction" value="-1"/>#-1 0 1
+      #CUSTOM#
+      <param name="error_circle" value="3"/>
+      <param name="error_scale" value="0.9"/>
+    </node>
+  </group>
+
+  <group ns="lidarRight">
+    <node name="lidar01" pkg="bluesea2" type="bluesea2_node" output="screen" >
+      #ROS#
+      <param name="scan_topic" value="scan"/>
+      <param name="cloud_topic" value="cloud"/>
+      <!-- <param name="frame_id" value="map" /> -->
+      <param name="frame_id" value="scan_right" />
+      #DATA#
+      <param name="min_dist" value="0.01"/>
+      <param name="max_dist" value="50.0"/>
+      <param name="output_scan" value="true" />
+      <param name="output_cloud" value="false"/>
+      <param name="output_cloud2" value="false"/>
+      <param name="output_360" value="true" />
+      <param name="reversed" value="false"/>
+      <param name="hard_resample" value="false"/>
+      <param name="soft_resample" value="false"/>
+      <param name="with_angle_filter" value="false"/>
+      <param name="min_angle" value="-3.1415926"/>
+      <param name="max_angle" value="3.1415926"/> 
+      #CONNECT#
+      <param name="type" value="uart" />
+      <!-- <param name="port" value="/dev/ttyUSB1" /> -->
+      <param name="port" value="/dev/ttyLIDARR" />
+      <param name="baud_rate" value="-1" />
+      #GET#
+      <param name="uuid" value="-1" />
+      #SET#
+      <param name="rpm" value="-1"/>
+      <param name="resample_res" value="-1"/>
+      <param name="unit_is_mm" value="-1"/>
+      <param name="with_smooth" value="-1" />
+      <param name="with_deshadow" value="-1" />
+      <param name="with_confidence" value="-1"/>
+      <param name="direction" value="-1"/>#-1 0 1
+      #CUSTOM#
+      <param name="error_circle" value="3"/>
+      <param name="error_scale" value="0.9"/>
+    </node>
+  </group>
+</launch>
 
